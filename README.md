@@ -46,3 +46,4 @@ In body section, instead:
 Good tutorials and resources (used while learning AngularJS and Material together):
 - https://www.tutorialspoint.com/angular_material/index.htm
 - https://www.w3schools.com/angular/
+- https://toddmotto.com/digging-into-angulars-controller-as-syntax/
