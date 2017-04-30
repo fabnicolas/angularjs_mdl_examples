@@ -10,16 +10,32 @@
 	<link rel="stylesheet" href="../node_modules/angular-material/angular-material.min.css">
 
     <script type="text/javascript">    
-        angular.module('first_app_hello_world', ['ngMaterial'])
-                .controller('user_controller', function($scope){
+        angular.module('main_module', ['ngMaterial'])
+                .controller('author_controller', function($scope){
                     $scope.author={name: "Fabio", surname: "Crispino"};
                     $scope.show_author_info=function(){
                         return $scope.author.surname+" "+$scope.author.name;
                     };
+                    $scope.counter_changes=0;
+                    $scope.increment_counter=function(){$scope.counter_changes++;}
+                    $scope.evaluate_counter=function(){
+                        return ($scope.counter_changes>0);
+                    }
                 });
     </script>
 </head>
-<body ng-app="first_app_hello_world" ng-controller="user_controller" ng-cloak>
-	The author of this page is: {{show_author_info()}}.
+<body ng-app="main_module" ng-controller="author_controller" ng-cloak>
+    <div>
+        The author of this page is: {{show_author_info()}}.<br/><br/>
+        But if you feel like a cracker, you can change the name of author here. Type it:<br/><br/>
+        <div>
+            New name: <input type="text" ng-model="author.name" ng-change="increment_counter()"/><br/>
+            New surname: <input type="text" ng-model="author.surname" ng-change="increment_counter()"/>
+        </div><br/>
+        Counter changes: {{counter_changes}}<br/>
+        <div ng-show="evaluate_counter()">
+            Huh? Text changes automatically? Hehe, AngularJS power!
+        </div>
+    </div>
 </body>
 </html>
