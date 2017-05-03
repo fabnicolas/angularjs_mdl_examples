@@ -11,29 +11,29 @@
 
     <script type="text/javascript">    
         angular.module('main_module', ['ngMaterial'])
-                .controller('author_controller', function(){
-                    this.author={name: "Fabio", surname: "Crispino"};
-                    this.show_author_info=function(){
-                        return this.author.surname+" "+this.author.name;
+                .controller('author_controller', function($scope){
+                    $scope.author={name: "Fabio", surname: "Crispino"};
+                    $scope.show_author_info=function(){
+                        return $scope.author.surname+" "+$scope.author.name;
                     };
-                    this.counter_changes=0;
-                    this.increment_counter=function(){this.counter_changes++;}
-                    this.evaluate_counter=function(){
-                        return (this.counter_changes>0);
+                    $scope.counter_changes=0;
+                    $scope.increment_counter=function(){$scope.counter_changes++;}
+                    $scope.evaluate_counter=function(){
+                        return ($scope.counter_changes>0);
                     }
                 });
     </script>
 </head>
-<body ng-app="main_module" ng-controller="author_controller as ctrl_auth" ng-cloak>
+<body ng-app="main_module" ng-controller="author_controller" ng-cloak>
     <div>
         The author of this page is: {{show_author_info()}}.<br/><br/>
         But if you feel like a cracker, you can change the name of author here. Type it:<br/><br/>
         <div>
-            New name: <input type="text" ng-model="ctrl_auth.author.name" ng-change="ctrl_auth.increment_counter()"/><br/>
-            New surname: <input type="text" ng-model="ctrl_auth.author.surname" ng-change="ctrl_auth.increment_counter()"/>
+            New name: <input type="text" ng-model="author.name" ng-change="increment_counter()"/><br/>
+            New surname: <input type="text" ng-model="author.surname" ng-change="increment_counter()"/>
         </div><br/>
-        Counter changes: {{ctrl_auth.counter_changes}}<br/>
-        <div ng-show="ctrl_auth.evaluate_counter()">
+        Counter changes: {{counter_changes}}<br/>
+        <div ng-show="evaluate_counter()">
             Huh? Text changes automatically? Hehe, AngularJS power!
         </div>
     </div>
